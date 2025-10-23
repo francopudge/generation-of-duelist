@@ -2,17 +2,15 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website Generations Of Duelist</title>
-    <link rel="icon" type="god.png" href="god.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <title>Generations Of Duelist</title>
+    <link rel="icon" type="image/png" href="god.png">
     <style>
-        /* ==================== PRELOADER STYLING BARU (TEMA FUTURISTIK DENGAN BIRU) ==================== */
+        /* ==================== PRELOADER FUTURISTIK ==================== */
         #preloader {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             background-color: #1a1a1a;
             background-image: url('air3.png'), url('air2.png');
             background-size: cover, cover;
@@ -66,19 +64,12 @@
             box-shadow: 0 0 8px rgba(0, 170, 255, 0.9);
         }
 
-        .progress-bar-fill.right {
-            right: 0;
-        }
+        .progress-bar-fill.right { right: 0; }
+        .progress-bar-fill.left { left: 0; }
 
-        .progress-bar-fill.left {
-            left: 0;
-        }
-
-        /* Teks Persentase Sekarang di Tengah */
         .progress-text {
             position: absolute;
-            top: 50%;
-            left: 50%;
+            top: 50%; left: 50%;
             transform: translate(-50%, -50%);
             font-size: 1.5em;
             font-weight: bold;
@@ -90,13 +81,11 @@
             pointer-events: none;
         }
 
-        /* Gambar Sekarang di Atas Teks */
         .loading-illustration {
             width: 150px;
             height: 150px;
             position: absolute;
-            top: 35%;
-            left: 50%;
+            top: 35%; left: 50%;
             transform: translate(-50%, -50%);
             z-index: 10000;
             background-image: url('god.png');
@@ -108,11 +97,10 @@
             transition: opacity 0.5s;
         }
         
-        /* ==================== STYLING DASAR & BODY ==================== */
+        /* ==================== BODY & KONTEN ==================== */
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
+            margin: 0; padding: 0;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
@@ -140,6 +128,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            flex-wrap: wrap;
         }
 
         .kotak-atas .left-content {
@@ -158,8 +147,7 @@
             font-weight: bold;
         }
         
-        .kotak-atas .audio-control {
-            margin-left: auto;
+        .audio-control {
             cursor: pointer;
             height: 35px;
             width: 35px;
@@ -169,14 +157,8 @@
             transition: transform 0.2s;
         }
         
-        .kotak-atas .audio-control:hover {
-            transform: scale(1.1);
-        }
-
-        .kotak-atas .audio-control img {
-            width: 100%;
-            height: 100%;
-        }
+        .audio-control:hover { transform: scale(1.1); }
+        .audio-control img { width: 100%; height: 100%; }
 
         .konten-utama {
             flex-grow: 1;
@@ -219,10 +201,6 @@
             color: #555;
         }
 
-        .announcement-box strong {
-            color: #007bff;
-        }
-
         .kotak-bawah {
             padding: 8px;
             text-align: center;
@@ -234,60 +212,69 @@
             margin: 0;
         }
 
+        /* ==================== RESPONSIVE ==================== */
         @media (max-width: 600px) {
             .konten-utama { margin: 10px; padding: 15px; }
-            .kotak-atas { padding: 5px 10px; flex-wrap: wrap; justify-content: center; }
-            .kotak-atas .left-content { order: 1; width: 100%; justify-content: center; }
-            .kotak-atas .audio-control { order: 2; margin-left: 0; margin-top: 10px; }
+            .kotak-atas { padding: 5px 10px; justify-content: center; }
             .kotak-atas .logo { height: 30px; margin-right: 10px; }
             .kotak-atas .header-text { font-size: 1.2em; }
             .announcement-box h3 { font-size: 1.5em; }
             .kotak-bawah { padding: 5px; }
             .kotak-bawah p { font-size: 0.8em; }
         }
+
+        @media (max-width: 480px) {
+            .loading-illustration { width: 100px; height: 100px; top: 40%; }
+            .progress-text { font-size: 1.2em; }
+            .progress-bar-container { height: 8px; }
+        }
     </style>
 </head>
 <body>
     
+    <!-- ==================== PRELOADER ==================== -->
     <div id="preloader">
         <div class="loading-content">
             <div class="progress-bar-container">
                 <div class="progress-bar-fill left" id="progress-fill-left"></div>
                 <div class="progress-bar-fill right" id="progress-fill-right"></div>
             </div>
-
             <div class="loading-illustration" id="loading-illustration-image"></div>
             <div class="progress-text" id="progress-percent">0%</div>
         </div>
     </div>
 
+    <!-- ==================== AUDIO ==================== -->
     <audio id="background-music" loop autoplay>
         <source src="ytmp3free.cc_yugioh-zexal-ost-photon-stream-of-destruction-youtubemp3free.org.mp3" type="audio/mpeg">
         Browser Anda tidak mendukung elemen audio.
     </audio>
 
+    <!-- ==================== HEADER ==================== -->
     <header class="kotak-atas">
         <div class="left-content">
             <img src="god.png" alt="Logo God" class="logo">
             <span class="header-text">Generations Of Duelist</span>
         </div>
-        
         <button id="audio-toggle" class="audio-control">
             <img id="audio-icon" src="pause.png" alt="Pause">
         </button>
     </header>
 
+    <!-- ==================== MAIN ==================== -->
     <main class="konten-utama">
         <div class="announcement-box">
             <h3><span class="icon">📢</span> PENGUMUMAN PENTING DUELIST!</h3>
-            
+            <p>Selamat datang di <strong>Generations Of Duelist!</strong> Website ini kini telah dioptimalkan agar tampil sempurna di perangkat mobile dan desktop. Nikmati pengalaman duel-mu dengan tampilan baru yang futuristik!</p>
         </div>
     </main>
 
+    <!-- ==================== FOOTER ==================== -->
     <footer class="kotak-bawah">
         <p>Yugioh Generations Of Duelist &copy; 2025.</p>
     </footer>
 
+    <!-- ==================== SCRIPT ==================== -->
     <script>
         const music = document.getElementById('background-music');
         const toggleButton = document.getElementById('audio-toggle');
@@ -301,7 +288,6 @@
         function startLoadingAnimation() {
             let currentPercent = 0;
             const MAX_FILL_WIDTH = 40;
-            
             const interval = setInterval(() => {
                 currentPercent += 1;
                 if (currentPercent > 100) currentPercent = 100;
@@ -321,14 +307,23 @@
                 setTimeout(() => {
                     preloader.classList.add('hidden');
                 }, 500);
-            }, 2000);
+            }, 1500);
         });
         
         music.play().catch(error => {
-            console.log("Autoplay diblokir. Musik akan dimulai saat tombol diklik.");
-             icon.src = 'play.png';
-             icon.alt = 'Play';
+            console.log("Autoplay diblokir. Musik akan dimulai setelah pengguna menyentuh layar.");
+            icon.src = 'play.png';
+            icon.alt = 'Play';
         });
+
+        // Musik mulai otomatis setelah tap pertama di HP
+        document.body.addEventListener('touchstart', () => {
+            if (music.paused) {
+                music.play();
+                icon.src = 'pause.png';
+                icon.alt = 'Pause';
+            }
+        }, { once: true });
 
         toggleButton.addEventListener('click', () => {
             if (music.paused) {
