@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
     <title>Generations Of Duelist</title>
-    <link rel="icon" type="image/png" href="god.png">
+    <link rel="icon" type="image/png" href="god.png" />
     <style>
         /* ==================== PRELOADER FUTURISTIK ==================== */
         #preloader {
             position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background-color: #1a1a1a;
             background-image: url('air3.png'), url('air2.png');
             background-size: cover, cover;
@@ -30,7 +32,7 @@
             visibility: hidden;
             pointer-events: none;
         }
-        
+
         .loading-content {
             display: flex;
             flex-direction: column;
@@ -42,7 +44,7 @@
             text-align: center;
             position: relative;
         }
-        
+
         .progress-bar-container {
             width: 100%;
             height: 10px;
@@ -64,12 +66,17 @@
             box-shadow: 0 0 8px rgba(0, 170, 255, 0.9);
         }
 
-        .progress-bar-fill.right { right: 0; }
-        .progress-bar-fill.left { left: 0; }
+        .progress-bar-fill.right {
+            right: 0;
+        }
+        .progress-bar-fill.left {
+            left: 0;
+        }
 
         .progress-text {
             position: absolute;
-            top: 50%; left: 50%;
+            top: 50%;
+            left: 50%;
             transform: translate(-50%, -50%);
             font-size: 1.5em;
             font-weight: bold;
@@ -85,7 +92,8 @@
             width: 150px;
             height: 150px;
             position: absolute;
-            top: 35%; left: 50%;
+            top: 35%;
+            left: 50%;
             transform: translate(-50%, -50%);
             z-index: 10000;
             background-image: url('god.png');
@@ -96,11 +104,12 @@
             opacity: 1;
             transition: opacity 0.5s;
         }
-        
+
         /* ==================== BODY & KONTEN ==================== */
         body {
             font-family: Arial, sans-serif;
-            margin: 0; padding: 0;
+            margin: 0;
+            padding: 0;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
@@ -114,7 +123,8 @@
         }
 
         /* ==================== HEADER ==================== */
-        .kotak-atas, .kotak-bawah {
+        .kotak-atas,
+        .kotak-bawah {
             background-image: url('air.png');
             background-size: cover;
             background-position: center;
@@ -168,8 +178,13 @@
             flex-shrink: 0;
         }
 
-        .audio-control:hover { transform: scale(1.1); }
-        .audio-control img { width: 100%; height: 100%; }
+        .audio-control:hover {
+            transform: scale(1.1);
+        }
+        .audio-control img {
+            width: 100%;
+            height: 100%;
+        }
 
         /* ==================== KONTEN ==================== */
         .konten-utama {
@@ -202,7 +217,7 @@
             margin-bottom: 15px;
             font-size: 1.8em;
         }
-        
+
         .announcement-box h3 .icon {
             font-size: 1.2em;
             margin-right: 10px;
@@ -211,6 +226,31 @@
         .announcement-box p {
             line-height: 1.6;
             color: #555;
+        }
+
+        /* Tambahan styling pengumuman dengan gambar dan daftar */
+        .announcement-box img {
+            max-width: 150px;
+            filter: drop-shadow(0 0 5px #00aaff);
+            border-radius: 10px;
+            margin: 20px auto;
+            display: block;
+        }
+
+        .announcement-box .turnamen-title {
+            color: #0077cc;
+            border-bottom: 2px solid #0077cc;
+            margin-top: 30px;
+            padding-bottom: 8px;
+            font-size: 1.6em;
+        }
+
+        .announcement-box ol {
+            padding-left: 20px;
+            color: #444;
+            font-weight: 600;
+            line-height: 1.6;
+            margin-top: 15px;
         }
 
         .kotak-bawah {
@@ -245,7 +285,10 @@
                 width: 30px;
             }
 
-            .konten-utama { margin: 10px; padding: 15px; }
+            .konten-utama {
+                margin: 10px;
+                padding: 15px;
+            }
         }
 
         @media (max-width: 400px) {
@@ -256,14 +299,21 @@
         }
 
         @media (max-width: 480px) {
-            .loading-illustration { width: 100px; height: 100px; top: 40%; }
-            .progress-text { font-size: 1.2em; }
-            .progress-bar-container { height: 8px; }
+            .loading-illustration {
+                width: 100px;
+                height: 100px;
+                top: 40%;
+            }
+            .progress-text {
+                font-size: 1.2em;
+            }
+            .progress-bar-container {
+                height: 8px;
+            }
         }
     </style>
 </head>
 <body>
-    
     <!-- ==================== PRELOADER ==================== -->
     <div id="preloader">
         <div class="loading-content">
@@ -278,28 +328,72 @@
 
     <!-- ==================== AUDIO ==================== -->
     <audio id="background-music" loop>
-        <source src="ytmp3free.cc_yugioh-zexal-ost-photon-stream-of-destruction-youtubemp3free.org.mp3" type="audio/mpeg">
+        <source src="ytmp3free.cc_yugioh-zexal-ost-photon-stream-of-destruction-youtubemp3free.org.mp3" type="audio/mpeg" />
         Browser Anda tidak mendukung elemen audio.
     </audio>
 
     <!-- ==================== HEADER ==================== -->
     <header class="kotak-atas">
         <div class="left-content">
-            <img src="god.png" alt="Logo God" class="logo">
+            <img src="god.png" alt="Logo God" class="logo" />
             <span class="header-text">Generations Of Duelist</span>
         </div>
         <button id="audio-toggle" class="audio-control">
-            <img id="audio-icon" src="play.png" alt="Play">
+            <img id="audio-icon" src="play.png" alt="Play" />
         </button>
     </header>
 
     <!-- ==================== MAIN ==================== -->
     <main class="konten-utama">
-        <div class="announcement-box">
-            <h3><span class="icon">📢</span> PENGUMUMAN PENTING DUELIST!</h3>
-            <p>Selamat datang di <strong>Generations Of Duelist!</strong> Website ini kini telah dioptimalkan agar tampil sempurna di perangkat mobile dan desktop. Nikmati pengalaman duel-mu dengan tampilan baru yang futuristik!</p>
-        </div>
-    </main>
+    <div class="announcement-box">
+        <h3><span class="icon">✨</span> BURNING SOUL</h3>
+        <p>
+            Salam hangat, para <strong>Duelist sejati</strong> dari <strong>Generations Of Duelist!</strong> Arena duel telah menanti, dan hanya yang terkuat yang berhak menyandang gelar Raja Duel. Bersiaplah untuk pertempuran kartu epik yang akan menguji Deck, strategi, dan semangatmu!
+        </p>
+
+        <img src="p.png" alt="Pengumuman Gambar" />
+
+        <h3 class="turnamen-title">🏆 GOD AMAZING CHAMPIONSHIP: DAFTAR PESERTA YANG SIAP BERDUEL! 🏆</h3>
+
+        <p style="text-align: center; font-style: italic; color: #a00; font-weight: bold; margin-bottom: 20px;">
+            Inilah para kesatria yang telah mendaftarkan diri. Tunjukkan kekuatanmu!
+        </p>
+
+        <ol>
+            <li><strong>Revolts</strong> (089510315328) <em></em></li>
+            <li><strong>ilham xd</strong> (089620706749) <em></em></li>
+            <li><strong>Acil</strong> <em></em></li>
+            <li><strong>Gadyra</strong> (08988344456) <em></em></li>
+            <li><strong>Nvrl</strong> (085710523609) <em></em></li>
+            <li><strong>~STAR•Leonメ</strong> (081236166277) <em></em></li>
+            <li><strong>Qeylez</strong> (0895619941656) <em></em></li>
+            <li><strong>RGx7</strong> (089527031264) <em></em></li>
+            <li><strong>Lekisob</strong> (083177266230) <em></em></li>
+            <li><strong>Lord Ray</strong> (081372874921) <em></em></li>
+            <li><strong>[G]•Laplace</strong> (088268170052) <em></em></li>
+            <li><strong>koya</strong> (0857872027041) <em></em></li>
+            <li><strong>[G] Lune錦瑟戦士</strong> <em></em></li>
+            <li><strong>[DS]Envooe</strong> (085891372347) <em></em></li>
+            <li><strong>Mirorjade</strong> (085736102600) <em></em></li>
+            <li><strong>Xerheart</strong> (081213541714) <em></em></li>
+            <li><strong>Pemtrik</strong> (085161172436) <em></em></li>
+            <li><strong>Zed</strong> (08977365660) <em></em></li>
+            <li><strong>Xkrayzi</strong> <em>(The Unstoppable)</em></li>
+            <li><strong>Alpine</strong> (081271231230) <em></em></li>
+            <li><strong>Oggy</strong> (089506398127) <em></em></li>
+            <li><strong>LGC|Esther</strong> <em></em></li>
+            <li><strong>NRMN</strong> (085250141406) <em></em></li>
+            <li><strong>Faylyne</strong> <em></em></li>
+            <li><strong>OPENBO500K</strong> (085176736423) <em></em></li>
+            <li><strong>REX</strong> (081226997805) <em></em></li>
+        </ol>
+
+        <p style="text-align: center; margin-top: 30px; font-weight: bold; color: #0077cc;">
+            **Detail dan Jadwal Pertandingan akan diumumkan segera melalui grup resmi.**<br>
+            Persiapkan Decks terbaikmu! **IT'S TIME TO DUEL!**
+        </p>
+    </div>
+</main>
 
     <!-- ==================== FOOTER ==================== -->
     <footer class="kotak-bawah">
@@ -316,7 +410,7 @@
         const progressIllustration = document.getElementById('loading-illustration-image');
         const progressFillLeft = document.getElementById('progress-fill-left');
         const progressFillRight = document.getElementById('progress-fill-right');
-        
+
         function startLoadingAnimation() {
             let currentPercent = 0;
             const MAX_FILL_WIDTH = 40;
@@ -330,7 +424,7 @@
                 if (currentPercent >= 100) clearInterval(interval);
             }, 20);
         }
-        
+
         window.addEventListener('load', () => {
             startLoadingAnimation();
             setTimeout(() => {
@@ -359,6 +453,5 @@
             }
         });
     </script>
-
 </body>
 </html>
