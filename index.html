@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Generations Of Duelist</title>
+    <link rel="icon" type="god.png" href="god.png">
+    <style>
+        /* ==================== PRELOADER STYLING BARU (TEMA FUTURISTIK DENGAN BIRU) ==================== */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #1a1a1a;
+            background-image: url('air3.png'), url('air2.png');
+            background-size: cover, cover;
+            background-position: center, center;
+            background-repeat: no-repeat, no-repeat;
+            background-blend-mode: multiply;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease 0.5s;
+            opacity: 1;
+        }
+
+        #preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        
+        .loading-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 95%;
+            max-width: 1000px;
+            color: #00aaff;
+            text-align: center;
+            position: relative;
+        }
+        
+        .progress-bar-container {
+            width: 100%;
+            height: 10px;
+            background-color: transparent;
+            position: relative;
+            margin-top: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            position: absolute;
+            height: 100%;
+            background-color: #00aaff;
+            top: 0;
+            width: 0%;
+            max-width: 40%;
+            transition: width 0.02s linear;
+            box-shadow: 0 0 8px rgba(0, 170, 255, 0.9);
+        }
+
+        .progress-bar-fill.right {
+            right: 0;
+        }
+
+        .progress-bar-fill.left {
+            left: 0;
+        }
+
+        /* Teks Persentase Sekarang di Tengah */
+        .progress-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #00aaff;
+            z-index: 10001;
+            text-shadow: 0 0 10px rgba(0, 170, 255, 0.8);
+            letter-spacing: 2px;
+            transition: opacity 0.5s;
+            pointer-events: none;
+        }
+
+        /* Gambar Sekarang di Atas Teks */
+        .loading-illustration {
+            width: 150px;
+            height: 150px;
+            position: absolute;
+            top: 35%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10000;
+            background-image: url('god.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            filter: drop-shadow(0 0 5px #00aaff);
+            opacity: 1;
+            transition: opacity 0.5s;
+        }
+        
+        /* ==================== STYLING DASAR & BODY ==================== */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-image: url('air2.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-color: #f0f0f5;
+            color: #333;
+        }
+        
+        .kotak-atas, .kotak-bawah {
+            background-image: url('air.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: white;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .kotak-atas {
+            padding: 8px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .kotak-atas .left-content {
+            display: flex;
+            align-items: center;
+        }
+
+        .kotak-atas .logo {
+            height: 40px;
+            width: auto;
+            margin-right: 15px;
+        }
+
+        .kotak-atas .header-text {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        
+        .kotak-atas .audio-control {
+            margin-left: auto;
+            cursor: pointer;
+            height: 35px;
+            width: 35px;
+            border: none;
+            background-color: transparent;
+            padding: 0;
+            transition: transform 0.2s;
+        }
+        
+        .kotak-atas .audio-control:hover {
+            transform: scale(1.1);
+        }
+
+        .kotak-atas .audio-control img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .konten-utama {
+            flex-grow: 1;
+            padding: 20px;
+            max-width: 900px;
+            margin: 20px auto;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            color: #333;
+        }
+
+        .announcement-box {
+            border: 3px solid #ff4500;
+            border-radius: 10px;
+            padding: 20px;
+            background-color: #fff8f8;
+            margin-bottom: 20px;
+            box-shadow: 0 0 10px rgba(255, 69, 0, 0.5);
+        }
+
+        .announcement-box h3 {
+            display: flex;
+            align-items: center;
+            color: #dc3545;
+            border-bottom: 2px dashed #ff4500;
+            padding-bottom: 10px;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+        }
+        
+        .announcement-box h3 .icon {
+            font-size: 1.2em;
+            margin-right: 10px;
+        }
+
+        .announcement-box p {
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .announcement-box strong {
+            color: #007bff;
+        }
+
+        .kotak-bawah {
+            padding: 8px;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        .kotak-bawah p {
+            font-size: 0.85em;
+            margin: 0;
+        }
+
+        @media (max-width: 600px) {
+            .konten-utama { margin: 10px; padding: 15px; }
+            .kotak-atas { padding: 5px 10px; flex-wrap: wrap; justify-content: center; }
+            .kotak-atas .left-content { order: 1; width: 100%; justify-content: center; }
+            .kotak-atas .audio-control { order: 2; margin-left: 0; margin-top: 10px; }
+            .kotak-atas .logo { height: 30px; margin-right: 10px; }
+            .kotak-atas .header-text { font-size: 1.2em; }
+            .announcement-box h3 { font-size: 1.5em; }
+            .kotak-bawah { padding: 5px; }
+            .kotak-bawah p { font-size: 0.8em; }
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="preloader">
+        <div class="loading-content">
+            <div class="progress-bar-container">
+                <div class="progress-bar-fill left" id="progress-fill-left"></div>
+                <div class="progress-bar-fill right" id="progress-fill-right"></div>
+            </div>
+
+            <div class="loading-illustration" id="loading-illustration-image"></div>
+            <div class="progress-text" id="progress-percent">0%</div>
+        </div>
+    </div>
+
+    <audio id="background-music" loop autoplay>
+        <source src="ytmp3free.cc_yugioh-zexal-ost-photon-stream-of-destruction-youtubemp3free.org.mp3" type="audio/mpeg">
+        Browser Anda tidak mendukung elemen audio.
+    </audio>
+
+    <header class="kotak-atas">
+        <div class="left-content">
+            <img src="god.png" alt="Logo God" class="logo">
+            <span class="header-text">Generations Of Duelist</span>
+        </div>
+        
+        <button id="audio-toggle" class="audio-control">
+            <img id="audio-icon" src="pause.png" alt="Pause">
+        </button>
+    </header>
+
+    <main class="konten-utama">
+        <div class="announcement-box">
+            <h3><span class="icon">📢</span> PENGUMUMAN PENTING DUELIST!</h3>
+            
+        </div>
+    </main>
+
+    <footer class="kotak-bawah">
+        <p>Yugioh Generations Of Duelist &copy; 2025.</p>
+    </footer>
+
+    <script>
+        const music = document.getElementById('background-music');
+        const toggleButton = document.getElementById('audio-toggle');
+        const icon = document.getElementById('audio-icon');
+        const preloader = document.getElementById('preloader');
+        const progressPercent = document.getElementById('progress-percent');
+        const progressIllustration = document.getElementById('loading-illustration-image');
+        const progressFillLeft = document.getElementById('progress-fill-left');
+        const progressFillRight = document.getElementById('progress-fill-right');
+        
+        function startLoadingAnimation() {
+            let currentPercent = 0;
+            const MAX_FILL_WIDTH = 40;
+            
+            const interval = setInterval(() => {
+                currentPercent += 1;
+                if (currentPercent > 100) currentPercent = 100;
+                const fillWidth = (currentPercent / 100) * MAX_FILL_WIDTH;
+                progressFillLeft.style.width = fillWidth + '%';
+                progressFillRight.style.width = fillWidth + '%';
+                progressPercent.textContent = currentPercent + '%';
+                if (currentPercent >= 100) clearInterval(interval);
+            }, 20);
+        }
+        
+        window.addEventListener('load', () => {
+            startLoadingAnimation();
+            setTimeout(() => {
+                progressIllustration.style.opacity = '0';
+                progressPercent.style.opacity = '0';
+                setTimeout(() => {
+                    preloader.classList.add('hidden');
+                }, 500);
+            }, 2000);
+        });
+        
+        music.play().catch(error => {
+            console.log("Autoplay diblokir. Musik akan dimulai saat tombol diklik.");
+             icon.src = 'play.png';
+             icon.alt = 'Play';
+        });
+
+        toggleButton.addEventListener('click', () => {
+            if (music.paused) {
+                music.play();
+                icon.src = 'pause.png';
+                icon.alt = 'Pause';
+            } else {
+                music.pause();
+                icon.src = 'play.png';
+                icon.alt = 'Play';
+            }
+        });
+    </script>
+
+</body>
+</html>
