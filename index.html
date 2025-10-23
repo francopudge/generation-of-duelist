@@ -112,7 +112,8 @@
             background-color: #f0f0f5;
             color: #333;
         }
-        
+
+        /* ==================== HEADER ==================== */
         .kotak-atas, .kotak-bawah {
             background-image: url('air.png');
             background-size: cover;
@@ -128,25 +129,33 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .kotak-atas .left-content {
             display: flex;
             align-items: center;
+            flex-shrink: 1;
+            min-width: 0;
         }
 
         .kotak-atas .logo {
             height: 40px;
             width: auto;
-            margin-right: 15px;
+            margin-right: 10px;
+            flex-shrink: 0;
         }
 
         .kotak-atas .header-text {
             font-size: 1.5em;
             font-weight: bold;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
-        
+
         .audio-control {
             cursor: pointer;
             height: 35px;
@@ -154,12 +163,15 @@
             border: none;
             background-color: transparent;
             padding: 0;
+            margin-left: auto;
             transition: transform 0.2s;
+            flex-shrink: 0;
         }
-        
+
         .audio-control:hover { transform: scale(1.1); }
         .audio-control img { width: 100%; height: 100%; }
 
+        /* ==================== KONTEN ==================== */
         .konten-utama {
             flex-grow: 1;
             padding: 20px;
@@ -214,13 +226,33 @@
 
         /* ==================== RESPONSIVE ==================== */
         @media (max-width: 600px) {
+            .kotak-atas {
+                padding: 6px 12px;
+                justify-content: space-between;
+            }
+
+            .kotak-atas .logo {
+                height: 32px;
+                margin-right: 8px;
+            }
+
+            .kotak-atas .header-text {
+                font-size: 1.1em;
+            }
+
+            .audio-control {
+                height: 30px;
+                width: 30px;
+            }
+
             .konten-utama { margin: 10px; padding: 15px; }
-            .kotak-atas { padding: 5px 10px; justify-content: center; }
-            .kotak-atas .logo { height: 30px; margin-right: 10px; }
-            .kotak-atas .header-text { font-size: 1.2em; }
-            .announcement-box h3 { font-size: 1.5em; }
-            .kotak-bawah { padding: 5px; }
-            .kotak-bawah p { font-size: 0.8em; }
+        }
+
+        @media (max-width: 400px) {
+            .kotak-atas .header-text {
+                font-size: 1em;
+                max-width: 130px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -245,7 +277,7 @@
     </div>
 
     <!-- ==================== AUDIO ==================== -->
-    <audio id="background-music" loop autoplay>
+    <audio id="background-music" loop>
         <source src="ytmp3free.cc_yugioh-zexal-ost-photon-stream-of-destruction-youtubemp3free.org.mp3" type="audio/mpeg">
         Browser Anda tidak mendukung elemen audio.
     </audio>
@@ -257,7 +289,7 @@
             <span class="header-text">Generations Of Duelist</span>
         </div>
         <button id="audio-toggle" class="audio-control">
-            <img id="audio-icon" src="pause.png" alt="Pause">
+            <img id="audio-icon" src="play.png" alt="Play">
         </button>
     </header>
 
@@ -309,22 +341,12 @@
                 }, 500);
             }, 1500);
         });
-        
-        music.play().catch(error => {
-            console.log("Autoplay diblokir. Musik akan dimulai setelah pengguna menyentuh layar.");
-            icon.src = 'play.png';
-            icon.alt = 'Play';
-        });
 
-        // Musik mulai otomatis setelah tap pertama di HP
-        document.body.addEventListener('touchstart', () => {
-            if (music.paused) {
-                music.play();
-                icon.src = 'pause.png';
-                icon.alt = 'Pause';
-            }
-        }, { once: true });
+        // Awalnya musik tidak diputar
+        icon.src = 'play.png';
+        icon.alt = 'Play';
 
+        // Klik tombol play/pause
         toggleButton.addEventListener('click', () => {
             if (music.paused) {
                 music.play();
